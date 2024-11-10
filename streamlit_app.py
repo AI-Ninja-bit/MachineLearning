@@ -2,6 +2,14 @@ import streamlit as st
 import joblib
 import pandas as pd
 
+st.markdown("""
+<style>
+.stMainMenu.st-emotion-cache-hwawmg.e16jpq800{
+    visibility:hidden;
+}
+</style>
+""",unsafe_allow_html=True)
+
 # Load the trained model
 model = joblib.load('model.pkl')  # Ensure model.pkl is in the same directory
 
