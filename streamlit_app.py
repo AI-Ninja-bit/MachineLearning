@@ -10,6 +10,9 @@ st.markdown("""
 _terminalButton_rix23_138{
     visibility:hidden;
 }
+._logs_rix23_17{
+    visibility:hidden;
+}
 </style>
 """,unsafe_allow_html=True)
 
