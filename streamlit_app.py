@@ -7,7 +7,7 @@ st.markdown("""
 .stMainMenu.st-emotion-cache-hwawmg.e16jpq800{
     visibility:hidden;
 }
-._terminalButton_rix23_138{
+_terminalButton_rix23_138{
     visibility:hidden;
 }
 </style>
