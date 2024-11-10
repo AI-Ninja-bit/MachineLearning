@@ -1,23 +1,14 @@
 import streamlit as st
 import joblib
 import pandas as pd
-
-st.markdown("""
-<style>
-.stMainMenu.st-emotion-cache-hwawmg.e16jpq800{
-    visibility:hidden;
-}
-._terminalButton_rix23_138{
-    visibility:hidden;
-}
-._logs_rix23_17{
-    visibility:hidden;
-}
-#manage-app-button{
-    visibility:hidden;
-}
-</style>
-""",unsafe_allow_html=True)
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # Load the trained model
 model = joblib.load('model.pkl')  # Ensure model.pkl is in the same directory
