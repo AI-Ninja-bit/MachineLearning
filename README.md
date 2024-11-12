@@ -1,6 +1,3 @@
-Here's a modified version of the README template customized for your calorie prediction model deployed with Streamlit:
-
----
 
 # 🍽️ Calorie Prediction App
 
