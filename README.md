@@ -29,4 +29,3 @@ For more insights into the data science techniques and tools used in this projec
 
 ---
 
-This template provides a starting point for describing and showcasing your app to potential users or contributors. Let me know if you'd like additional sections or details.
