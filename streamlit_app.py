@@ -9,7 +9,7 @@ st.sidebar.header("Input Features")
 import pickle
 
 # Load your trained model (adjust the path as necessary)
-with open('path_to_your_model.pkl', 'rb') as file:
+with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 
