@@ -6,6 +6,12 @@ st.title("Calorie Prediction App")
 
 # Sidebar inputs
 st.sidebar.header("Input Features")
+import pickle
+
+# Load your trained model (adjust the path as necessary)
+with open('path_to_your_model.pkl', 'rb') as file:
+    model = pickle.load(file)
+
 
 def user_input_features():
     age = st.sidebar.slider("Age", 10, 80, 25)
