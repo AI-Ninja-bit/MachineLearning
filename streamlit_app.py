@@ -1,35 +1,53 @@
 import streamlit as st
-import joblib
 import pandas as pd
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            ._terminalButton_rix23_138{visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
 
-# Load the trained model
-model = joblib.load('model.pkl')  # Ensure model.pkl is in the same directory
+# Title
+st.title("Calorie Prediction App")
 
-# Set up the app title and description
-st.title("Calories Prediction App")
-st.write("This app predicts calories burned based on steps, distance, and active minutes.")
+# Sidebar inputs
+st.sidebar.header("Input Features")
 
-# Define user inputs for the features
-steps = st.number_input("Steps:", min_value=0, max_value=100000, value=1000, step=100)
-distance = st.number_input("Distance (in km):", min_value=0.0, max_value=100.0, value=1.0, step=0.1)
-active_minutes = st.number_input("Total Active Minutes:", min_value=0, max_value=1440, value=30, step=5)
+def user_input_features():
+    age = st.sidebar.slider("Age", 10, 80, 25)
+    gender = st.sidebar.selectbox("Gender", ["Male", "Female"])
+    height = st.sidebar.number_input("Height (cm)", 100, 250, 170)
+    weight = st.sidebar.number_input("Weight (kg)", 30, 200, 70)
+    activity_level = st.sidebar.selectbox("Activity Level", [
+        "Sedentary",
+        "Lightly active",
+        "Moderately active",
+        "Very active",
+        "Extra active",
+    ])
 
-# Predict calories when the button is clicked
+    gender_value = 1 if gender == "Male" else 0
+    activity_map = {
+        "Sedentary": 1.2,
+        "Lightly active": 1.375,
+        "Moderately active": 1.55,
+        "Very active": 1.725,
+        "Extra active": 1.9,
+    }
+    activity_value = activity_map[activity_level]
+
+    data = {
+        "Age": age,
+        "Gender": gender_value,
+        "Height": height,
+        "Weight": weight,
+        "Activity Level": activity_value,
+    }
+    return pd.DataFrame(data, index=[0])
+
+input_df = user_input_features()
+
+# Display input features
+st.subheader("User Input Features")
+st.write(input_df)
+
+# Predict button
 if st.button("Predict Calories"):
-    # Prepare the input data as a DataFrame
-    input_data = pd.DataFrame([[steps, distance, active_minutes]], columns=['Steps', 'Distance', 'Total_Active_Minutes'])
-    
-    # Make the prediction
-    prediction = model.predict(input_data)
-    
-    # Display the prediction
-    st.write(f"Estimated Calories Burned: {prediction[0]:.2f}")
+    # Assuming a pre-trained model is loaded as `model`
+    prediction = model.predict(input_df)  # Replace `model` with your trained model
+    st.subheader("Predicted Calorie Requirement")
+    st.write(f"{prediction[0]:.2f} calories/day")
