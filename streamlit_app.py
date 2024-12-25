@@ -53,7 +53,6 @@ st.write(input_df)
 
 # Predict button
 if st.button("Predict Calories"):
-    # Assuming a pre-trained model is loaded as `model`
-    prediction = model.predict(input_df)  # Replace `model` with your trained model
+    prediction = model.predict(input_df) 
     st.subheader("Predicted Calorie Requirement")
     st.write(f"{prediction[0]:.2f} calories/day")
